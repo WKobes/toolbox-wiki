@@ -6,6 +6,8 @@ This GitHub repository contains several how-to's for providing practical informa
 
 Feedback and/or contributions are much appreciated and welcome through issues, pull requests or via [question@internet.nl](mailto:question@internet.nl).
 
+This repository and all contributions to it are licensed under CC BY 4.0, with the exception of the Internet.nl trademark and logo.
+
 # Quick access
 [DANE how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DANE-for-SMTP-how-to.md)  
 [DKIM how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DKIM-how-to.md)  
