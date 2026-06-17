@@ -632,6 +632,7 @@ Alwin de Bruin
 Anders Berggren  
 Marc van de Geijn  
 Mark Scholten  
+[mdecimus](https://github.com/mdecimus)  
 Patrick Koetter  
 Simon Besteman  
 Tom van Leeuwen  

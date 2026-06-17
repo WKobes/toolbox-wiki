@@ -7,18 +7,13 @@ This GitHub repository contains several how-to's for providing practical informa
 Feedback and/or contributions are much appreciated and welcome through issues, pull requests or via [question@internet.nl](mailto:question@internet.nl).
 
 # Quick access
-[DANE how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DANE-for-SMTP-how-to.md)
-
-[DKIM how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DKIM-how-to.md)
-
-[SPF how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/SPF-how-to.md)
-
-[DMARC how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DMARC-how-to.md)
-
-[Parked domain how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/parked-domain-how-to.md)
+[DANE how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DANE-for-SMTP-how-to.md)  
+[DKIM how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DKIM-how-to.md)  
+[SPF how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/SPF-how-to.md)  
+[DMARC how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DMARC-how-to.md)  
+[Parked domain how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/parked-domain-how-to.md)  
 
 
 # Interesting external sources
-[SIDN Hands-on guides](https://www.sidn.nl/en/cyber-security/modern-internet-standards)
-
-[The Internet Society's Open Standards Everywhere Project](https://github.com/InternetSociety/ose-documentation)
+[SIDN Hands-on guides](https://www.sidn.nl/en/cyber-security/modern-internet-standards)  
+[The Internet Society's Open Standards Everywhere Project](https://github.com/InternetSociety/ose-documentation)  
