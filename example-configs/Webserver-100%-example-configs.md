@@ -8,6 +8,7 @@ For all webservers, we observe the following common mistakes:
 
 * HTTPS redirect: our test demands an upgrade to HTTPS **first**, before redirecting. This means that when you want your website to be accessible over domain example.nl, we expect http://example.nl to redirect to https://example.nl, while http://www.example.nl should redirect first to https://www.example.nl, then to https://example.nl. The reason for this, is that HSTS will only work when the Strict-Transport-Security header is served over HTTPS. By redirecting directly, the initial domain is not protected by HSTS.
 * SHA-1 as hash function for key exchange: this is a legacy hash function that is explicitly deprecated since 2021 by [RFC 9155](https://datatracker.ietf.org/doc/html/rfc9155) and insufficient according to the latest TLS guidelines. Note that this is a different setting than the accepted ciphers. Not all firmware (especially GUI firmware) allows you easily change this configuration.
+* Internet.nl expects HTTP security headers to be set, even when a domain/URL is merely a redirect to another domain. This is considered a defense-in-depth measure and should not affect the redirect.
 
 ## nginx
 The most actual example configuration can be found within the source code of Internet.nl itself. 
