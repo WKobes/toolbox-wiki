@@ -222,6 +222,7 @@ This section describes several points for attention when implementing DANE for S
 * Check if DANE TLSA records (_25._tcp.mail.example.nl) are properly DNSSEC signed. A regularly occurring mistake is the presence of "proof of non-existence" (NSEC3) for the ancestor domain (_tcp.mail.example.nl). If this happens then resolvers that use QNAME minimization (like the resolver used by [Internet.nl](https://internet.nl)) think that _25._tcp.mail.example.nl does not exist since _tcp.mail.example.nl does not exists. Therefore the resolver can't get the TLSA record which makes DANE fail. 
   * Check your DNSSEC implementation on [DNSViz](https://dnsviz.net/). Enter "_25._tcp.mail.example.nl".
   * You can also manually check for this error. `dig _25._tcp.mail.example.nl tlsa +dnssec` results in a NOERROR response, while `dig _tcp.mail.example.nl tlsa +dnssec` results in a NXDOMAIN response. 
+* You can set up SMTP TLS Reporting (TLSRPT, see [RFC 8460](https://www.rfc-editor.org/info/rfc8460/) to receive reports concerning TLS connections. These reports may help you to debug issues concerning DANE and TLS.
 
 # Inbound e-mail traffic (publishing DANE DNS records)
 This part of the how-to describes the steps that should be taken with regard to your inbound e-mail traffic, which primarily involves publishing DANE DNS records. This enables other parties to use DANE for validating the certificates offered by your e-mail servers. 
