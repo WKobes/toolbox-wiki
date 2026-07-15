@@ -9,14 +9,14 @@ Feedback and/or contributions are much appreciated and welcome through issues, p
 This repository and all contributions to it are licensed under CC BY 4.0, with the exception of the Internet.nl trademark and logo.
 
 # Quick access
-[DANE how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DANE-for-SMTP-how-to.md)  
-[DKIM how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DKIM-how-to.md)  
-[SPF how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/SPF-how-to.md)  
-[STARTTLS how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/STARTTLS-how-to.md)  
-[DMARC how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/DMARC-how-to.md)  
-[Parked domain how-to](https://github.com/internetstandards/toolbox-wiki/blob/main/parked-domain-how-to.md)  
-[DNS records overview](https://github.com/internetstandards/toolbox-wiki/blob/main/DNS-records-overview.md)  
-[Example webserver configs](https://github.com/internetstandards/toolbox-wiki/blob/main/example-configs/Webserver-100%-example-configs.md)  
+[DANE how-to](/DANE-for-SMTP-how-to.md)  
+[DKIM how-to](/DKIM-how-to.md)  
+[SPF how-to](/SPF-how-to.md)  
+[STARTTLS how-to](/STARTTLS-how-to.md)  
+[DMARC how-to](/DMARC-how-to.md)  
+[Parked domain how-to](/parked-domain-how-to.md)  
+[DNS records overview](/DNS-records-overview.md)  
+[Example webserver configs](/example-configs/Webserver-100%-example-configs.md)  
 
 
 # Interesting external sources
