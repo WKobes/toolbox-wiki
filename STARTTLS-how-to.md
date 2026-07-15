@@ -15,14 +15,14 @@ Under construction
 Under construction
 
 # Tips, tricks and notices for implementation
-* http://postfix.1071664.n5.nabble.com/Disable-SSL-TLS-renegotiation-td96864.html#a96871
+
 * Use the RFC 7919 defined DH groups: https://raw.githubusercontent.com/internetstandards/dhe_groups/main/ffdhe4096.pem)
 
 ## Implementing STARTTLS in Postfix
 **Specifics for this setup**
-* Linux Debian 10 (Buster) 
-* Postfix 3.4.5
-* OpenSSL 1.1.1d
+* Ubuntu 24.04
+* Postfix 3.10.x
+* OpenSSL 3.0.3
 
 **Assumptions**
 * Mail server is using DANE
@@ -30,46 +30,48 @@ Under construction
 
 ### Configuring Postfix
 
-    # use DANE (when acting as a client)
+/etc/postfix/main.cf
+
+    tls_high_cipherlist = ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-CCM:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-CCM:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256
+    tls_config_name = postfix
+    tls_preempt_cipherlist = yes
+
+    smtpd_tls_cert_file=...
+    smtpd_tls_key_file=...
+    smtpd_tls_security_level=may
+    smtpd_tls_auth_only=yes
+    smtpd_tls_protocols = >=TLSv1.2
+    smtpd_tls_mandatory_protocols = >=TLSv1.2
+    smtpd_tls_ciphers = high
+    smtpd_tls_mandatory_ciphers = high
+    smtpd_tls_loglevel = 1
+    smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_tls_session_cache
+    smtpd_tls_received_header = yes
+
+    smtp_tls_note_starttls_offer = yes
+    smtp_tls_protocols = >=TLSv1.2
+    smtp_tls_mandatory_protocols = >=TLSv1.2
+    smtp_tls_ciphers = high
+    smtp_tls_mandatory_ciphers = high
+    smtp_tls_loglevel = 1
+    smtp_tls_session_cache_database = btree:/var/lib/postfix/smtp_tls_session_cache
     smtp_dns_support_level = dnssec
     smtp_tls_security_level = dane
-    smtp_host_lookup = dns
-    smtp_tls_note_starttls_offer = yes
-
-    # --- TLS settings ---
-    smtpd_tls_security_level = may
-    smtpd_tls_key_file = /etc/postfix/ssl/example.nl.key
-    smtpd_tls_cert_file = /etc/postfix/ssl/example.nl.crt
-    smtpd_tls_CAfile = /etc/postfix/ssl/example.nl-cabundle.crt
-    smtpd_tls_received_header = yes
-    smtpd_tls_session_cache_timeout = 3600s
-      
-    # --- TLS protocol config ---
-    smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
-    smtpd_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
-    smtp_tls_mandatory_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
-    smtp_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
-    lmtp_tls_mandatory_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
-    lmtp_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
-	
-	# --- TLS cipher config ---
-    smtpd_tls_mandatory_ciphers=high
-    smtpd_tls_ciphers=high
-	# disable compression and client-initiated renegotiation
-    tls_ssl_options = NO_COMPRESSION, 0x40000000
-	# disable unsecure ciphers
-    smtpd_tls_exclude_ciphers = EXP, LOW, MEDIUM, aNULL, eNULL, SRP, PSK, kDH, ADH, AECDH, kRSA, DSS, RC4, DES, IDEA, SEED, ARIA, AESCCM8, 3DES, MD5
-    smtp_tls_exclude_ciphers = EXP, LOW, MEDIUM, aNULL, eNULL, SRP, PSK, kDH, ADH, AECDH, kRSA, DSS, RC4, DES, IDEA, SEED, ARIA, AESCCM8, 3DES, MD5
-	# Enable server cipher-suite preferences
-    tls_preempt_cipherlist = yes
-    # Forward secrecy
-    smtpd_tls_eecdh_grade=ultra
-    smtpd_tls_dh1024_param_file = /etc/postfix/ssl/ffdhe4096.pem
-	
-	# --- TLS logging ---
-    smtp_tls_loglevel = 1
-    smtpd_tls_loglevel = 1
 
 
+/etc/ssl/openssl.cnf
+
+    postfix = postfix_settings
+    ....
+    [postfix_settings]
+    ssl_conf = postfix_ssl_settings
+    [postfix_ssl_settings]
+    system_default = baseline_postfix_settings
+    [baseline_postfix_settings]
+    SignatureAlgorithms = ECDSA+SHA256:ECDSA+SHA384:ECDSA+SHA512:RSA-PSS+SHA256:RSA-PSS+SHA384:RSA-PSS+SHA512:RSA+SHA512:RSA+SHA256:RSA+SHA384
 
 
+To enable PQC:
+
+    tls_eecdh_auto_curves =
+    tls_ffdhe_auto_groups =
