@@ -21,7 +21,7 @@ This how-to is created by the Dutch Internet Standards Platform (the organizatio
 If a domain is not using e-mail it is recommended to use the following settings.
 
 ## Null MX
-Explicitly configure an 'empty' MX record according to [RFC7505 ](https://tools.ietf.org/html/rfc7505). 
+Explicitly configure an 'empty' MX record according to [RFC 7505](https://tools.ietf.org/html/rfc7505). 
 
 `example.nl. IN MX 0 .`
 
@@ -44,7 +44,7 @@ When using a wildcard selector to set an empty public key, you indicate that all
 `*._domainkey.example.nl. IN TXT "v=DKIM1; p="`
 
 ## SPF
-Set an an empty policy (not mentioning any ip-adresses or hostnames which are allowed to send mail) and a hard fail.
+Set an an empty policy (not mentioning any IP addresses or hostnames which are allowed to send mail) and a hard fail.
 
 `example.nl. IN TXT "v=spf1 -all"`
  
